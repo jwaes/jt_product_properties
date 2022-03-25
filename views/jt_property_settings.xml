@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <menuitem id="menu_product_properties_config" name="Product properties" parent="stock.menu_stock_config_settings" groups="stock.group_stock_manager" sequence="60" />
+    <menuitem id="menu_product_properties_key_config" name="Property keys" action="jt_property_key_action" groups="stock.group_stock_manager" parent="menu_product_properties_config" sequence="10" />
+    
+
+</odoo>
