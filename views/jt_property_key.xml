@@ -18,6 +18,7 @@
               <field name="name" />
               <field name="code" />
               <field name="property_type"/>
+              <field name="proppy" />
             </group>
             <notebook attrs="{'invisible':[('property_type','!=','selection')]}">
               <page name="property_values" string="Property values">
