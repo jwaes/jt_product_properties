@@ -18,6 +18,7 @@
               <field name="name" />
               <field name="code" />
               <field name="property_type"/>
+              <field name="behavior"/>
             </group>
             <notebook attrs="{'invisible':[('property_type','!=','selection')]}">
               <page name="property_values" string="Property values">
@@ -44,6 +45,7 @@
           <field name="sequence" widget="handle"/>
           <field name="name" />
           <field name="code" />
+          <field name="behavior" />
         </tree>
       </field>
     </record>

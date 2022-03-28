@@ -12,12 +12,20 @@ class ProductProduct(models.Model):
 
     @api.depends('property_kv_ids')
     def _compute_all_kvs(self):
-        _logger.debug("Getting all kvs")
-        _logger.debug("kvs count in %s : %s",self.name, len(self.property_kv_ids))
         kvs = self.property_kv_ids
+
+        all_parental_kvs = self.env['jt.property.kv']
+
         if self.categ_id:
-            _logger.debug("adding category kvs")
-            kvs = kvs | self.categ_id.all_kvs
-        # add template kvs ?
-        _logger.debug("kvs count in %s : %s", self.name, len(self.property_kv_ids))
-        self.all_kvs = kvs
+            all_parental_kvs = self.categ_id.all_kvs
+        _logger.debug("all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
+
+        for kv in self.property_kv_ids:
+            #looking for values in parental map to remove
+            if kv.key_id.behavior == 'replace':
+                all_parental_kvs = all_parental_kvs.filtered(lambda kvi: kvi.code != kv.code)
+        _logger.debug("after filtering, all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
+
+        #now merging new values
+        self.all_kvs = all_parental_kvs | self.property_kv_ids
+        _logger.debug("final all kvs count in %s : %s", self.name, len(self.all_kvs))

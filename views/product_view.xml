@@ -19,7 +19,7 @@
 
                     </field>
                     <field name="all_kvs" widget="one2many">
-                        <tree string="Calculated Properties" readonly="True">
+                        <tree string="Calculated Properties" default_order='code' readonly="True">
                             <field name="property_type" invisible="True" />
                             <field name="reference_name"/>
                             <field name="key_id" />

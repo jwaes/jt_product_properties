@@ -8,11 +8,13 @@ _logger = logging.getLogger(__name__)
 class PropertyKV(models.Model):
     _name = 'jt.property.kv'
     _description = 'Property key/value pair'
+    _order = 'code'
 
     key_id = fields.Many2one('jt.property.key', string='Key', required=True)
 
     # 'name_template' : fields.related('product_id','name_template', type='char', string='Name Template',store=True),
     property_type = fields.Selection(related='key_id.property_type', tracking=True)
+    code = fields.Char(related='key_id.code', tracking=True)
 
     # one of these values is valid, depending on the key.property_type
     value_id = fields.Many2one('jt.property.value', string='Value', domain="[('key_id', '=', key_id)]")
@@ -45,14 +47,14 @@ class PropertyKV(models.Model):
     @api.onchange('category_id')
     @api.depends('category_id')
     def onchange_cat_id(self):
-        if self.reference_name != "[]":
-            self.reference_name = "CAT"
+        if self.reference_name == "[]":
+            self.reference_name = "[CAT]"
 
     @api.onchange('product_id')
     @api.depends('product_id')
     def onchange_prod_id(self):
-        if self.reference_name != "[]":
-            self.reference_name = "PROD"            
+        if self.reference_name == "[]":
+            self.reference_name = "[PROD]"            
 
     
     @api.onchange('property_type')
