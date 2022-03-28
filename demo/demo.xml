@@ -1,15 +1,56 @@
 <odoo>
-    <data>
-      <record id="key01" model="jt.property.key">
-        <field name="name">Designer</field>
-        <field name="code">designer</field>
-      </record>
+  <data>
+    <record id="key01" model="jt.property.key">
+      <field name="name">Designer</field>
+      <field name="code">designer</field>
+    </record>
 
-      <record id="key02" model="jt.property.key">
-        <field name="name">Awards</field>
-        <field name="code">awards</field>
-      </record>
-<!--
+    <record id="key02" model="jt.property.key">
+      <field name="name">Awards</field>
+      <field name="code">awards</field>
+    </record>
+
+    <record id="val01" model="jt.property.value">
+      <field name="name">Marike Andeweg</field>
+      <field name="key_id">key01</field>
+    </record>
+
+    <record id="val02" model="jt.property.value">
+      <field name="name">Ray Eames</field>
+      <field name="key_id">key01</field>
+    </record>
+
+    <record id="kv01" name="jt.property.kv">
+      <field name="key_id">key01</field>
+      <field name="value_id">val01</field>
+    </record>
+
+    <record id="kv02" name="jt.property.kv">
+      <field name="key_id">key01</field>
+      <field name="value_id">val02</field>
+    </record>
+
+
+    <record id="val03" model="jt.property.value">
+      <field name="name">Red Dot</field>
+      <field name="key_id">key02</field>
+    </record>
+
+    <record id="val03" model="jt.property.value">
+      <field name="name">Le Corbu Award</field>
+      <field name="key_id">key02</field>
+    </record>
+
+    <record id="kv03" name="jt.property.kv">
+      <field name="key_id">key02</field>
+      <field name="value_id">val03</field>
+    </record>
+
+    <record id="kv03" name="jt.property.kv">
+      <field name="key_id">key02</field>
+      <field name="value_id">val04</field>
+    </record>
+    <!--
           <record id="object0" model="jt_product_properties.jt_product_properties">
             <field name="name">Object 0</field>
             <field name="value">0</field>
@@ -35,5 +76,5 @@
             <field name="value">40</field>
           </record>
 -->
-    </data>
+  </data>
 </odoo>

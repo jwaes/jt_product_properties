@@ -8,9 +8,25 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Properties" name="jt_product_properties">
-                    <group >
-                        <field name="proppy" />
-                    </group>
+                    <field name="property_kv_ids" widget="one2many">
+                        <tree string="Properties" editable="bottom">
+                          <field name="property_type" invisible="True"/>
+                          <field name="key_id"/>
+                          <field name="value_id" widget='selection' attrs="{'readonly':[('property_type','!=','selection')]}"/>                          
+                          <field name="text" attrs="{'readonly':[('property_type','!=','free_text')]}"/>
+                          <field name="product_id" context="{'product_id': active_id}" invisible="True"/>
+                        </tree >
+
+                    </field>
+                    <field name="all_kvs" widget="one2many">
+                        <tree string="Calculated Properties" readonly="True">
+                            <field name="property_type" invisible="True" />
+                            <field name="reference_name"/>
+                            <field name="key_id" />
+                            <field name="value_id" widget='selection' attrs="{'readonly':[('property_type','!=','selection')]}" />
+                            <field name="text" attrs="{'readonly':[('property_type','!=','free_text')]}" />
+                        </tree>
+                    </field>                      
                 </page>
 
             </xpath>

@@ -20,4 +20,4 @@ class PropertyKey(models.Model):
         default='selection',
         required=True)
 
-    value_ids = fields.One2many('jt.property.value', 'key_id', string='Property values')    
+    value_ids = fields.One2many('jt.property.value', 'key_id', string='Property values')
