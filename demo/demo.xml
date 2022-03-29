@@ -10,13 +10,15 @@
       <field name="code">awards</field>
     </record>
 
-    <record id="val01" model="jt.property.value">
+    <!-- <record id="val01" model="jt.property.value">
       <field name="name">Marike Andeweg</field>
+      <field name="sequence">1</field>
       <field name="key_id">key01</field>
     </record>
 
     <record id="val02" model="jt.property.value">
       <field name="name">Ray Eames</field>
+      <field name="sequence">2</field>
       <field name="key_id">key01</field>
     </record>
 
@@ -29,7 +31,7 @@
     <record id="val03" model="jt.property.value">
       <field name="name">Le Corbu Award</field>
       <field name="key_id">key02</field>
-    </record>
+    </record> -->
 
     <!--
           <record id="object0" model="jt_product_properties.jt_product_properties">

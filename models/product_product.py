@@ -16,9 +16,11 @@ class ProductProduct(models.Model):
 
         all_parental_kvs = self.env['jt.property.kv']
 
-        if self.categ_id:
-            all_parental_kvs = self.categ_id.all_kvs
-        _logger.debug("all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
+        # if self.categ_id:
+        #     all_parental_kvs = self.categ_id.all_kvs
+        # _logger.debug("all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
+        _logger.debug("getting properties for product.product %s", self.name)
+        all_parental_kvs = self.product_tmpl_id.tmpl_all_kvs
 
         for kv in self.property_kv_ids:
             #looking for values in parental map to remove
