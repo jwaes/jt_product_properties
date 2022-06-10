@@ -7,8 +7,8 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    tmpl_property_kv_ids = fields.One2many('jt.property.kv', 'product_template_id', string='Property fields')
-    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', order='key_id')
+    tmpl_property_kv_ids = fields.One2many('jt.property.kv', 'product_template_id', string='Template Property fields')
+    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs')
 
     @api.depends('tmpl_property_kv_ids')
     def _compute_all_kvs(self):

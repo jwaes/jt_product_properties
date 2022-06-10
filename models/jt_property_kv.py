@@ -12,8 +12,8 @@ class PropertyKV(models.Model):
     key_id = fields.Many2one('jt.property.key', string='Key', required=True)
 
     # 'name_template' : fields.related('product_id','name_template', type='char', string='Name Template',store=True),
-    property_type = fields.Selection(related='key_id.property_type', tracking=True)
-    code = fields.Char(related='key_id.code', tracking=True)
+    property_type = fields.Selection(related='key_id.property_type')
+    code = fields.Char(related='key_id.code')
 
     # one of these values is valid, depending on the key.property_type
     value_id = fields.Many2one('jt.property.value', string='Value', domain="[('key_id', '=', key_id)]")

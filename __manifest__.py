@@ -14,14 +14,14 @@
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Customizations',
-    'version': '15.0.1.0.6',
+    'version': '0.8',
 
     # any module necessary for this one to work correctly
     'depends': ['base','stock','website'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/jt_property_key.xml',
         'views/jt_property_settings.xml',
         'views/product_category.xml',

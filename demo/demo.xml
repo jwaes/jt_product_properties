@@ -2,62 +2,13 @@
   <data>
     <record id="key01" model="jt.property.key">
       <field name="name">Designer</field>
-      <field name="code">designer</field>
+      <field name="code">public.designer</field>
     </record>
 
     <record id="key02" model="jt.property.key">
       <field name="name">Awards</field>
-      <field name="code">awards</field>
+      <field name="code">public.awards</field>
     </record>
 
-    <!-- <record id="val01" model="jt.property.value">
-      <field name="name">Marike Andeweg</field>
-      <field name="sequence">1</field>
-      <field name="key_id">key01</field>
-    </record>
-
-    <record id="val02" model="jt.property.value">
-      <field name="name">Ray Eames</field>
-      <field name="sequence">2</field>
-      <field name="key_id">key01</field>
-    </record>
-
-
-    <record id="val03" model="jt.property.value">
-      <field name="name">Red Dot</field>
-      <field name="key_id">key02</field>
-    </record>
-
-    <record id="val03" model="jt.property.value">
-      <field name="name">Le Corbu Award</field>
-      <field name="key_id">key02</field>
-    </record> -->
-
-    <!--
-          <record id="object0" model="jt_product_properties.jt_product_properties">
-            <field name="name">Object 0</field>
-            <field name="value">0</field>
-          </record>
-
-          <record id="object1" model="jt_product_properties.jt_product_properties">
-            <field name="name">Object 1</field>
-            <field name="value">10</field>
-          </record>
-
-          <record id="object2" model="jt_product_properties.jt_product_properties">
-            <field name="name">Object 2</field>
-            <field name="value">20</field>
-          </record>
-
-          <record id="object3" model="jt_product_properties.jt_product_properties">
-            <field name="name">Object 3</field>
-            <field name="value">30</field>
-          </record>
-
-          <record id="object4" model="jt_product_properties.jt_product_properties">
-            <field name="name">Object 4</field>
-            <field name="value">40</field>
-          </record>
--->
   </data>
 </odoo>

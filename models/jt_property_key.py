@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class PropertyKey(models.Model):
     _name = 'jt.property.key'
-    _description = 'Key'
+    _description = 'Property key'
     _order = 'code, sequence'
 
     name = fields.Char(string='Key name', required=True, translate=True)
