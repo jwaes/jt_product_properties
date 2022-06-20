@@ -43,8 +43,8 @@
       <field name="arch" type="xml">
         <tree string="">
           <field name="sequence" widget="handle"/>
+          <field name="code" />          
           <field name="name" />
-          <field name="code" />
           <field name="behavior" />
         </tree>
       </field>

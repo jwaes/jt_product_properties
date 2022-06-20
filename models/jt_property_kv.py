@@ -38,10 +38,10 @@ class PropertyKV(models.Model):
                 rec.ref_name = '[CAT] {}'.format(rec.category_id.name)
             elif rec.product_template_id:
                 _logger.debug("found templ")
-                rec.ref_name = '[PROD] {}'.format(rec.product_template_id.name)        
+                rec.ref_name = '[TMPL] {}'.format(rec.product_template_id.name)        
             elif rec.product_id:
                 _logger.debug("found product")
-                rec.ref_name = '[VAR] {}'.format(rec.product_id.name)        
+                rec.ref_name = '[PROD] {}'.format(rec.product_id.name)        
 
     
     @api.onchange('property_type')
