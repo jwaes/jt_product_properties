@@ -11,20 +11,22 @@ class ProductCategory(models.Model):
 
     @api.depends('property_kv_ids')
     def _compute_all_kvs(self):
-        kvs = self.property_kv_ids
+        for categ in self:
 
-        all_parental_kvs = self.env['jt.property.kv']
+            kvs = categ.property_kv_ids
 
-        if self.parent_id:
-            all_parental_kvs = self.parent_id.all_kvs
-        _logger.debug("all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
+            all_parental_kvs = self.env['jt.property.kv']
 
-        for kv in self.property_kv_ids:
-            #looking for values in parental map to remove
-            if kv.key_id.behavior == 'replace':
-                all_parental_kvs = all_parental_kvs.filtered(lambda kvi: kvi.code != kv.code)
-        _logger.debug("after filtering, all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
+            if categ.parent_id:
+                all_parental_kvs = categ.parent_id.all_kvs
+            _logger.debug("all_parental_kvs length for %s is %s", categ.name, len(all_parental_kvs))
 
-        #now merging new values
-        self.all_kvs = all_parental_kvs | self.property_kv_ids
-        _logger.debug("final all kvs count in %s : %s", self.name, len(self.all_kvs))
+            for kv in categ.property_kv_ids:
+                #looking for values in parental map to remove
+                if kv.key_id.behavior == 'replace':
+                    all_parental_kvs = all_parental_kvs.filtered(lambda kvi: kvi.code != kv.code)
+            _logger.debug("after filtering, all_parental_kvs length for %s is %s", categ.name, len(all_parental_kvs))
+
+            #now merging new values
+            categ.all_kvs = all_parental_kvs | categ.property_kv_ids
+            _logger.debug("final all kvs count in %s : %s", categ.name, len(categ.all_kvs))

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import re
 from odoo import models, fields, api
 
 _logger = logging.getLogger(__name__)
@@ -31,3 +32,11 @@ class PropertyKey(models.Model):
         string='Behavior',
         default='replace',
         required=True)
+
+    @api.onchange('code')
+    def _check_code(self):
+        for rec in self:
+            if rec.code:
+                rec.code = re.sub('[^a-z0-9\.\-]*', '', rec.code.lower())
+
+
