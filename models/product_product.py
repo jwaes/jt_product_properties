@@ -18,11 +18,16 @@ class ProductProduct(models.Model):
 
             all_parental_kvs = self.env['jt.property.kv']
 
-            # if self.categ_id:
-            #     all_parental_kvs = self.categ_id.all_kvs
-            # _logger.debug("all_parental_kvs length for %s is %s", self.name, len(all_parental_kvs))
             _logger.debug("getting properties for product.product %s", record.name)
             all_parental_kvs = record.product_tmpl_id.tmpl_all_kvs
+
+            for parent_kv in all_parental_kvs:
+                if parent_kv.product_template_attribute_value_ids:                    
+                    for ptav in parent_kv.product_template_attribute_value_ids:
+                        if ptav not in record.product_template_variant_value_ids:
+                            #filtering out values set on the template but not applicable for this variant
+                            _logger.debug("ptav %s was not in the list of applicables, removing", ptav)
+                            all_parental_kvs = all_parental_kvs.filtered(lambda kvi: ptav not in kvi.product_template_attribute_value_ids)
 
             for kv in record.property_kv_ids:
                 #looking for values in parental map to remove

@@ -43,6 +43,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Properties" name="jt_product_properties">
+                    <field name="has_active_attributes" invisible="True"/>
                     <field name="tmpl_property_kv_ids" widget="one2many">
                         <tree string="Properties" editable="bottom">
                           <field name="property_type" invisible="True"/>
@@ -50,6 +51,12 @@
                           <field name="value_id" widget='selection' attrs="{'readonly':[('property_type','!=','selection')]}"/>                          
                           <field name="text" attrs="{'readonly':[('property_type','!=','free_text')]}"/>
                           <field name="product_template_id" context="{'product_template_id': active_id}" invisible="True"/>
+                          <field name="possible_product_template_attribute_value_ids" invisible="True"/>
+                          <field name="product_template_attribute_value_ids" 
+                          widget="many2many_tags" 
+                          options="{'no_create': True}"
+                          attrs="{'column_invisible': [('parent.has_active_attributes', '==', False)]}"
+                          />
                         </tree >
                     </field>
 

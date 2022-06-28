@@ -16,7 +16,8 @@ class PropertyKV(models.Model):
     code = fields.Char(related='key_id.code')
 
     # one of these values is valid, depending on the key.property_type
-    value_id = fields.Many2one('jt.property.value', string='Value', domain="[('key_id', '=', key_id)]")
+    value_id = fields.Many2one(
+        'jt.property.value', string='Value', domain="[('key_id', '=', key_id)]")
     text = fields.Char('text', translate=True)
     html = fields.Text('html', translate=True)
 
@@ -27,7 +28,24 @@ class PropertyKV(models.Model):
     ref_name = fields.Char('Reference', compute='_compute_reference_name')
 
     url = fields.Char(compute='_compute_url', compute_sudo=True, string='url')
-    
+
+    possible_product_template_attribute_value_ids = fields.Many2many('product.template.attribute.value',
+        compute='_compute_possible_product_template_attribute_value_ids')
+
+    product_template_attribute_value_ids = fields.Many2many(
+        'product.template.attribute.value', string="Apply on Variants", ondelete='restrict',
+        domain="[('id', 'in', possible_product_template_attribute_value_ids)]",
+        help="BOM Product Variants needed to apply this line.")
+
+    @api.depends(
+        'product_template_id.attribute_line_ids.value_ids',
+        'product_template_id.attribute_line_ids.attribute_id.create_variant',
+        'product_template_id.attribute_line_ids.product_template_value_ids.ptav_active',
+    )
+    def _compute_possible_product_template_attribute_value_ids(self):
+        for record in self:
+            record.possible_product_template_attribute_value_ids = record.product_template_id.valid_product_template_attribute_line_ids._without_no_variant_attributes().product_template_value_ids._only_active()
+
     @api.depends('value_id')
     def _compute_url(self):
         for rec in self:
@@ -41,19 +59,18 @@ class PropertyKV(models.Model):
             _logger.debug("code is %s", rec.code)
             _logger.debug("product_id is %s", rec.product_id)
             _logger.debug("template_id is %s", rec.product_template_id)
-            _logger.debug("category_id is %s", rec.category_id)        
+            _logger.debug("category_id is %s", rec.category_id)
             rec.ref_name = '[]'
             if rec.category_id:
                 _logger.debug("found categ")
                 rec.ref_name = '[CAT] {}'.format(rec.category_id.name)
             elif rec.product_template_id:
                 _logger.debug("found templ")
-                rec.ref_name = '[TMPL] {}'.format(rec.product_template_id.name)        
+                rec.ref_name = '[TMPL] {}'.format(rec.product_template_id.name)
             elif rec.product_id:
                 _logger.debug("found product")
-                rec.ref_name = '[PROD] {}'.format(rec.product_id.name)        
+                rec.ref_name = '[PROD] {}'.format(rec.product_id.name)
 
-    
     @api.onchange('property_type')
     def onchange_property_type(self):
         if self.property_type == 'select':
@@ -69,4 +86,4 @@ class PropertyKV(models.Model):
     def write(self, vals):
         super().write(vals)
         self.onchange_property_type(self)
-        return True        
+        return True

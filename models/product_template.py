@@ -10,6 +10,13 @@ class ProductTemplate(models.Model):
     tmpl_property_kv_ids = fields.One2many('jt.property.kv', 'product_template_id', string='Template Property fields')
     tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs')
 
+    has_active_attributes = fields.Boolean('has_active_attributes', compute='_compute_has_active_attributes')
+    
+    @api.depends('valid_product_template_attribute_line_ids')
+    def _compute_has_active_attributes(self):
+        for record in self:
+            record.has_active_attributes = record.valid_product_template_attribute_line_ids._without_no_variant_attributes().product_template_value_ids._only_active()
+
     @api.depends('tmpl_property_kv_ids')
     def _compute_all_kvs(self):
         for tmpl in self:
