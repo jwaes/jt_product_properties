@@ -26,6 +26,16 @@ class PropertyKV(models.Model):
 
     ref_name = fields.Char('Reference', compute='_compute_reference_name')
 
+    url = fields.Char(compute='_compute_url', compute_sudo=True, string='url')
+    
+    @api.depends('value_id')
+    def _compute_url(self):
+        for rec in self:
+            if rec.value_id.page_id:
+                rec.url = rec.value_id.page_id.url
+            else:
+                rec.url = None
+
     def _compute_reference_name(self):
         for rec in self:
             _logger.debug("code is %s", rec.code)
