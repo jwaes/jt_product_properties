@@ -85,5 +85,5 @@ class PropertyKV(models.Model):
 
     def write(self, vals):
         super().write(vals)
-        self.onchange_property_type(self)
+        self.onchange_property_type()
         return True
