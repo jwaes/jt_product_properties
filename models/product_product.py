@@ -8,9 +8,9 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     property_kv_ids = fields.One2many('jt.property.kv', 'product_id', string='Variant Property fields')
-    all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs')     
+    all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True)     
 
-    @api.depends('property_kv_ids')
+    @api.depends('property_kv_ids','product_tmpl_id','product_tmpl_id.tmpl_all_kvs')
     def _compute_all_kvs(self):
         for record in self:
 

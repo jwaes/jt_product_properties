@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     tmpl_property_kv_ids = fields.One2many('jt.property.kv', 'product_template_id', string='Template Property fields')
-    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs')
+    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True)
 
     has_active_attributes = fields.Boolean('has_active_attributes', compute='_compute_has_active_attributes')
     
@@ -17,7 +17,7 @@ class ProductTemplate(models.Model):
         for record in self:
             record.has_active_attributes = record.valid_product_template_attribute_line_ids._without_no_variant_attributes().product_template_value_ids._only_active()
 
-    @api.depends('tmpl_property_kv_ids')
+    @api.depends('tmpl_property_kv_ids','categ_id','categ_id.all_kvs')
     def _compute_all_kvs(self):
         for tmpl in self:
             kvs = tmpl.tmpl_property_kv_ids
