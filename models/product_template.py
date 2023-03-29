@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     tmpl_property_kv_ids = fields.One2many('jt.property.kv', 'product_template_id', string='Template Property fields')
-    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, store=True)
+    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, )
 
     has_active_attributes = fields.Boolean('has_active_attributes', compute='_compute_has_active_attributes')
     
@@ -39,6 +39,6 @@ class ProductTemplate(models.Model):
             tmpl.tmpl_all_kvs = all_parental_kvs | tmpl.tmpl_property_kv_ids
             _logger.debug("final all kvs count in %s : %s", tmpl.name, len(tmpl.tmpl_all_kvs))
  
-            _logger.info("┌──[TPL] %s ", tmpl.name)
-            for kvl in tmpl.tmpl_all_kvs:
-                _logger.info("├─ %s : %s", kvl.code, kvl.text)   
+            # _logger.info("┌──[TPL] %s ", tmpl.name)
+            # for kvl in tmpl.tmpl_all_kvs:
+            #     _logger.info("├─ %s : %s", kvl.code, kvl.text)   

@@ -8,7 +8,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     property_kv_ids = fields.One2many('jt.property.kv', 'product_id', string='Variant Property fields')
-    all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, store=True)     
+    all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, )     
 
     @api.depends('property_kv_ids','product_tmpl_id','product_tmpl_id.tmpl_all_kvs')
     def _compute_all_kvs(self):
@@ -39,6 +39,6 @@ class ProductProduct(models.Model):
             record.all_kvs = all_parental_kvs | record.property_kv_ids
             _logger.debug("final all kvs count in %s : %s", record.name, len(record.all_kvs))
 
-            _logger.info("┌──[PRD] %s ", record.name)
-            for kvl in record.all_kvs:
-                _logger.info("├─ %s : %s", kvl.code, kvl.text)            
+            # _logger.info("┌──[PRD] %s ", record.name)
+            # for kvl in record.all_kvs:
+            #     _logger.info("├─ %s : %s", kvl.code, kvl.text)            
