@@ -7,7 +7,7 @@ class ProductCategory(models.Model):
     _inherit = 'product.category'
 
     property_kv_ids = fields.One2many('jt.property.kv', 'category_id', string='Property fields')
-    all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True)
+    all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, store=True)
 
     @api.depends('property_kv_ids','parent_id','parent_id.all_kvs')
     def _compute_all_kvs(self):
