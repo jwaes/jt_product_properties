@@ -30,3 +30,7 @@ class ProductCategory(models.Model):
             #now merging new values
             categ.all_kvs = all_parental_kvs | categ.property_kv_ids
             _logger.debug("final all kvs count in %s : %s", categ.name, len(categ.all_kvs))
+
+            _logger.info("┌──[CAT] %s ", categ.name)
+            for kvl in categ.all_kvs:
+                _logger.info("├─ %s : %s", kvl.code, kvl.text)
