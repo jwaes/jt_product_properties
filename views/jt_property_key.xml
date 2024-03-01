@@ -20,7 +20,7 @@
               <field name="property_type"/>
               <field name="behavior"/>
             </group>
-            <notebook attrs="{'invisible':[('property_type','!=','selection')]}">
+            <notebook invisible="property_type != selection">
               <page name="property_values" string="Property values">
                 <field name="value_ids" widget="one2many">
                   <tree string="Values" editable="bottom">
