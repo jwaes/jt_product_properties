@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     tmpl_property_kv_ids = fields.One2many('jt.property.kv', 'product_template_id', string='Template Property fields')
-    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, )
+    tmpl_all_kvs = fields.One2many('jt.property.kv', compute='_compute_all_kvs', recursive=True, string='All template KVS' )
 
     has_active_attributes = fields.Boolean('has_active_attributes', compute='_compute_has_active_attributes')
     
