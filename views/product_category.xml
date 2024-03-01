@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="product_category_view_form" model="ir.ui.view">
-        <field name="name">product_category_view_form</field>
-        <field name="model">product.category</field>
-        <field name="inherit_id" ref="product.product_category_form_view" />
-        <field name="arch" type="xml">
-            <xpath expr="//sheet" position="inside">
-                <notebook>
-                    <page string="Properties" name="jt_product_properties">
-                        <field name="property_kv_ids" widget="one2many">
-                            <tree string="Properties" editable="bottom">
-                                <field name="property_type" invisible="True" />
-                                <field name="key_id" />
-                                <field name="value_id" widget='selection' attrs="{'readonly':[('property_type','!=','selection')]}" />
-                                <field name="text" attrs="{'readonly':[('property_type','!=','free_text')]}" />
-                                <field name="category_id" context="{'category_id': active_id}" invisible="True" />
-                            </tree>
-                        </field>
-                        <field name="all_kvs" widget="one2many">
-                            <tree string="Calculated Properties" default_order='code,ref_name' readonly="True">
-                                <field name="property_type" invisible="True" />
-                                <field name="ref_name"/>
-                                <field name="code"/>
-                                <field name="key_id" />
-                                <field name="value_id" widget='selection' attrs="{'readonly':[('property_type','!=','selection')]}" />
-                                <field name="text" attrs="{'readonly':[('property_type','!=','free_text')]}" />
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
-            </xpath>
-        </field>
-    </record>
-
+ <record id="product_category_view_form" model="ir.ui.view">
+  <field name="name">product_category_view_form</field>
+  <field name="model">product.category</field>
+  <field name="inherit_id" ref="product.product_category_form_view"/>
+  <field name="arch" type="xml">
+   <xpath expr="//sheet" position="inside">
+    <notebook>
+     <page name="jt_product_properties" string="Properties">
+      <field name="property_kv_ids" widget="one2many">
+       <tree editable="bottom" string="Properties">
+        <field invisible="True" name="property_type"/>
+        <field name="key_id"/>
+        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
+        <field name="text" readonly="property_type != 'free_text'"/>
+        <field context="{'category_id': active_id}" invisible="True" name="category_id"/>
+       </tree></field>
+      <field name="all_kvs" widget="one2many">
+       <tree default_order="code,ref_name" readonly="True" string="Calculated Properties">
+        <field invisible="True" name="property_type"/>
+        <field name="ref_name"/>
+        <field name="code"/>
+        <field name="key_id"/>
+        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
+        <field name="text" readonly="property_type != 'free_text'"/>
+       </tree></field>
+     </page>
+    </notebook>
+   </xpath></field>
+ </record>
 </odoo>
