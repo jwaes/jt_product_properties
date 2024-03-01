@@ -19,9 +19,8 @@
               <field name="code" />
               <field name="property_type"/>
               <field name="behavior"/>
-              <field name="selection" invisible="true" />
             </group>
-            <notebook invisible="property_type != selection">
+            <notebook invisible="property_type != 'selection'">
               <page name="property_values" string="Property values">
                 <field name="value_ids" widget="one2many">
                   <tree string="Values" editable="bottom">
