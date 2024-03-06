@@ -13,7 +13,7 @@
        <field name="key_id"/>
        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
        <field name="text" readonly="property_type != 'free_text'"/>
-       <field context="{'product_id': active_id}" invisible="True" name="product_id"/>
+       <field context="{'product_id': id}" invisible="True" name="product_id"/>
       </tree></field>
      <h4>
       Calculated properties
@@ -44,7 +44,7 @@
        <field name="key_id"/>
        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
        <field name="text" readonly="property_type != 'free_text'"/>
-       <field context="{'product_template_id': active_id}" invisible="True" name="product_template_id"/>
+       <field context="{'product_template_id': id}" invisible="True" name="product_template_id"/>
        <field invisible="True" name="possible_product_template_attribute_value_ids"/>
        <field column_invisible="parent.has_active_attributes == False" name="product_template_attribute_value_ids" options="{'no_create': True}" widget="many2many_tags"/>
       </tree></field>

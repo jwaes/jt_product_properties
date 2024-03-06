@@ -14,7 +14,7 @@
         <field name="key_id"/>
         <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
         <field name="text" readonly="property_type != 'free_text'"/>
-        <field context="{'category_id': active_id}" invisible="True" name="category_id"/>
+        <field context="{'category_id': id}" invisible="True" name="category_id"/>
        </tree></field>
       <field name="all_kvs" widget="one2many">
        <tree default_order="code,ref_name" readonly="True" string="Calculated Properties">
