@@ -25,10 +25,10 @@ class PropertyValue(models.Model):
             _logger.info("before: %s", rec.code)
             if rec.name:
                 if not rec.code:
-                    rec.code = re.sub('\s+','-', rec.name)
+                    rec.code = re.sub(r'\s+','-', rec.name)
 
     @api.onchange('code')
     def _check_code(self):
         for rec in self:
             if rec.code:
-                rec.code = re.sub('[^a-z0-9\.\-]*', '', rec.code.lower())
+                rec.code = re.sub(r'[^a-z0-9\.\-]*', '', rec.code.lower())
