@@ -38,6 +38,6 @@ class PropertyKey(models.Model):
         for rec in self:
             if rec.code:
                 # changed
-                rec.code = re.sub(r'[^a-z0-9\.\-]*', '', rec.code.lower())
+                rec.code = re.sub(r'[^a-z0-9.-]*', '', rec.code.lower())
 
 
