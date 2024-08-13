@@ -37,6 +37,7 @@ class PropertyKey(models.Model):
     def _check_code(self):
         for rec in self:
             if rec.code:
+                # changed
                 rec.code = re.sub(r'[^a-z0-9\.\-]*', '', rec.code.lower())
 
 
