@@ -4,7 +4,7 @@
     <record id="jt_property_key_action" model="ir.actions.act_window">
       <field name="name">Property keys</field>
       <field name="res_model">jt.property.key</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">list,form</field>
       <field name="help" type="html"><p>Configure the property keys</p></field>
     </record>
 
@@ -23,13 +23,13 @@
             <notebook invisible="property_type != 'selection'">
               <page name="property_values" string="Property values">
                 <field name="value_ids" widget="one2many">
-                  <tree string="Values" editable="bottom">
+                  <list string="Values" editable="bottom">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="code"/>
                     <field name="page_id"/>
                     <field name="css_class"/>
-                  </tree>
+                  </list>
                 </field>
               </page>
             </notebook>
@@ -42,12 +42,12 @@
       <field name="name">Property keys list</field>
       <field name="model">jt.property.key</field>
       <field name="arch" type="xml">
-        <tree string="">
+        <list string="">
           <field name="sequence" widget="handle"/>
           <field name="code" />          
           <field name="name" />
           <field name="behavior" />
-        </tree>
+        </list>
       </field>
     </record>
 

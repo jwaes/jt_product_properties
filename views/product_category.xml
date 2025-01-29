@@ -9,22 +9,22 @@
     <notebook>
      <page name="jt_product_properties" string="Properties">
       <field name="property_kv_ids" widget="one2many">
-       <tree editable="bottom" string="Properties">
+       <list editable="bottom" string="Properties">
         <field invisible="True" name="property_type"/>
         <field name="key_id"/>
         <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
         <field name="text" readonly="property_type != 'free_text'"/>
         <field context="{'category_id': id}" invisible="True" name="category_id"/>
-       </tree></field>
+       </list></field>
       <field name="all_kvs" widget="one2many">
-       <tree readonly="True" string="Calculated Properties">
+       <list readonly="True" string="Calculated Properties">
         <field invisible="True" name="property_type"/>
         <field name="ref_name"/>
         <field name="code"/>
         <field name="key_id"/>
         <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
         <field name="text" readonly="property_type != 'free_text'"/>
-       </tree></field>
+       </list></field>
      </page>
     </notebook>
    </xpath></field>

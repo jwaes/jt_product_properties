@@ -8,25 +8,25 @@
    <xpath expr="//notebook" position="inside">
     <page name="jt_product_properties" string="Properties">
      <field name="property_kv_ids" widget="one2many">
-      <tree editable="bottom" string="Properties">
+      <list editable="bottom" string="Properties">
        <field invisible="True" name="property_type"/>
        <field name="key_id"/>
        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
        <field name="text" readonly="property_type != 'free_text'"/>
        <field context="{'product_id': id}" invisible="True" name="product_id"/>
-      </tree></field>
+      </list></field>
      <h4>
       Calculated properties
      </h4>
      <field name="all_kvs" widget="one2many">
-      <tree readonly="True" string="Calculated Properties">
+      <list readonly="True" string="Calculated Properties">
        <field invisible="True" name="property_type"/>
        <field name="ref_name"/>
        <field name="code"/>
        <field name="key_id"/>
        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
        <field name="text" readonly="property_type != 'free_text'"/>
-      </tree></field>
+      </list></field>
     </page>
    </xpath></field>
  </record>
@@ -39,7 +39,7 @@
     <page name="jt_product_properties" string="Properties">
      <field invisible="True" name="has_active_attributes"/>
      <field name="tmpl_property_kv_ids" widget="one2many">
-      <tree editable="bottom" string="Properties">
+      <list editable="bottom" string="Properties">
        <field invisible="True" name="property_type"/>
        <field name="key_id"/>
        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
@@ -47,19 +47,19 @@
        <field context="{'product_template_id': id}" invisible="True" name="product_template_id"/>
        <field invisible="True" name="possible_product_template_attribute_value_ids"/>
        <field column_invisible="parent.has_active_attributes == False" name="product_template_attribute_value_ids" options="{'no_create': True}" widget="many2many_tags"/>
-      </tree></field>
+      </list></field>
      <h4>
       Calculated template properties
      </h4>
      <field name="tmpl_all_kvs" widget="one2many">
-      <tree readonly="True" string="Calculated Properties">
+      <list readonly="True" string="Calculated Properties">
        <field invisible="True" name="property_type"/>
        <field name="ref_name"/>
        <field name="code"/>
        <field name="key_id"/>
        <field name="value_id" readonly="property_type != 'selection'" widget="selection"/>
        <field name="text" readonly="property_type != 'free_text'"/>
-      </tree></field>
+      </list></field>
     </page>
    </xpath></field>
  </record>
