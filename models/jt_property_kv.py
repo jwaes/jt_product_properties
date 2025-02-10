@@ -82,8 +82,3 @@ class PropertyKV(models.Model):
         elif self.property_type == 'html':
             self.text = None
             self.value_id = None
-
-    def write(self, vals):
-        super().write(vals)
-        self.onchange_property_type()
-        return True
